@@ -1,5 +1,5 @@
 import mongoose, {Schema} from "mongoose";
-import { jwt } from "jsonwebtoken";
+import  jwt  from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 const userSchema = new Schema(
@@ -59,7 +59,7 @@ const userSchema = new Schema(
 // incryption of the password
 userSchema.pre("save", async function (next) {
     if(!this.isModified("password")) return next() // to check is password is modifed or not
-    this.password = bcrypt.hash(this.password, 10) 
+    this.password = await bcrypt.hash(this.password, 10) 
     next()
 })
 
